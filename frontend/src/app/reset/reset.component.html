@@ -1,0 +1,33 @@
+<div class="row" style="margin-top:40px; padding:20px; background-color:#eff0f2;border-radius:15px;
+-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
+  <!-- <div class="col-sm-12" style="text-align:center;">
+    Register
+  </div> -->
+
+  <div class="col-sm-12">
+    <form [formGroup]="resetForm" (ngSubmit)="reset()">
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input formControlName="password" type="password" class="form-control" id="passwordInput" aria-describedby="passHelp" placeholder="password">
+        <small id="passHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group">
+          <label for="CpasswordInput">Confirm Password</label>
+          <input formControlName="cpass" type="password" class="form-control" id="CpasswordInput" aria-describedby="CpassHelp" placeholder="password">
+          <small id="CpassHelp" class="form-text text-muted"></small>
+      </div>
+  
+
+    <!-- <input type="text" name="asd" formControlName="asd" value="{{abc}}"> -->
+ <div class="form-group">
+        <label for="abc">token</label>
+        <input formControlName="abc" type="text" class="form-control" id="abc" aria-describedby="tokenHelp" value="{{abc}}" [(ngModel)]="abc">
+        <small id="tokenHelp" class="form-text text-muted"></small>
+      </div>
+   <input type="submit" value="save"/>
+     
+    </form>
+  </div>
+</div>

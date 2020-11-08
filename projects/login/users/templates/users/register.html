@@ -1,0 +1,25 @@
+{% load crispy_forms_tags %}
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-{{ message.tags}}"></div>
+ {{ message }}
+ {% endfor %}
+{% endif %}
+<div class="content-section">
+<form method="post">
+{% csrf_token %}
+<label></label>
+<fieldset class="form-group">
+<legend class="border-bottom md-4">join Today</legend>
+{{ form|crispy }}
+</fieldset>
+<div class="form-group">
+<button class="btn btn-outline-info" type="submit">sign Up</button>
+</div>
+</form>
+<div class="border-top pt-3">
+<small class="text-muted">
+Already Have An account? <a class="ml-2" href="#"> Sign In</a>
+</small>
+</div>
+</div>

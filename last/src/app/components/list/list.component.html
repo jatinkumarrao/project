@@ -1,0 +1,161 @@
+
+
+<div class="container">
+   
+<table class="table table-bordered" >  
+<a class="nav-link" href="/list">Back</a>
+         
+ <select class="a" [(ngModel)]="selectedObject" name="selectedObject" class="form-control" (change)="updateProfile($event.target.value)" >
+  <option  disabled>--Select--</option>
+
+                    <option  *ngFor="let category of Employee" value="category">{{category.title}}</option>
+                </select>
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.designation.errors?.required">
+            Choose designation.
+          </div>
+      <tr *ngFor="let employee of Employee1 | paginate: { id: 'listing_pagination',                        itemsPerPage: 1,currentPage: page,totalItems: totalRec }; let i= index" [ngSwitch]="employee.action">
+    
+  
+  <th >
+    
+  <form [formGroup]="employeeForm" (ngSubmit)="createOrUpdate()">
+            <div class="form-group">
+          <label for="inputPassword3">Select Type:-</label>
+          <select  [(ngModel)]="selectedObject1" name="selectedObject1" class="form-control" (change)="read1($event.target.value)" formControlName="designation">
+                    <option  disabled>--Select--</option>
+
+                    <option  *ngFor="let category of Employee2" value="{{category.name}}">{{category.name}}</option>
+                </select>
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.designation.errors?.required">
+            Choose designation.
+          </div>
+        </div>
+ <div class="h_line"></div>
+  <div class="example-container">
+    <input class="form-control" type="hidden"formControlName="name" name="name" [(ngModel)]="employee.name"  value="{{employee.name}}"> 
+</div>
+
+ <div class="example-container">
+    <input class="form-control" type="hidden"formControlName="st2" name="st2" [(ngModel)]="employee.st2"  value="{{employee.st2}}">
+  
+</div>
+<div class="example-container">
+    <input class="form-control" type="hidden"formControlName="question" name="question" [(ngModel)]="employee.question"  value="{{employee.question}}">
+  
+</div>
+<div >
+  <p  scope="row">{{employee.question}}:-{{employee.name}}</p>
+  
+  
+  <label for="inputPassword3">Pick Answer:-</label>
+  <p *ngSwitchCase="'same job, new job, career change'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="same job" class="b">  same job<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="new job"> new job<br>
+  <a class="float">c)</a><input class="c" type="radio" formControlName="Options" value="career change"> career change
+</p>
+<p *ngSwitchCase="'full time, part time'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="full time" class="b">  full time<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="part time"> part time
+</p>
+<p *ngSwitchCase="'Yes, No'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="yes" class="b">  Yes<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="no"> No
+</p>
+<p *ngSwitchCase="'small field'">
+  <input class="form-control" type="text"formControlName="st2" name="st2" [(ngModel)]="employee.st2"  value="{{employee.st2}}">
+</p>
+</div>
+<tr *ngFor="let employee of Employee4 | paginate: { id: 'listing_pagination1',itemsPerPage:10,currentPage: page, totalItems: totalRec }; let i = index" [ngSwitch]="employee.action ">
+<div>
+  <div class="h_line" style="width: 1100px; height:1px; background: #212529 "></div>
+
+   <p scope="row" >{{employee.question}}:-{{employee.name}}</p>
+ <label for="inputPassword3">Pick Answer:-</label>
+ <p *ngSwitchCase="'Alone, Home with assistance, long term care facility, other'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="Alone" class="b">  Alone<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="Home with assistance"> Home with assistance<br>
+  <a class="float">c)</a><input class="c" type="radio" formControlName="Options" value="long term care facility"> long term care facility<br>
+   <a class="float">d)</a><input class="c" type="radio" formControlName="Options" value="other"> other
+</p>
+<p *ngSwitchCase="'poor, fair, good, excellent'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="poor" class="b">  poor<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="fair"> fair<br>
+  <a class="float">c)</a><input class="c" type="radio" formControlName="Options" value="good"> good<br>
+   <a class="float">d)</a><input class="c" type="radio" formControlName="Options" value="excellent"> excellent
+</p>
+<p *ngSwitchCase="'Impaired, Unimpaired'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="Impaired" class="b">  Impaired<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="Unimpaired"> Unimpaired
+</p>
+<p *ngSwitchCase="'Normal, Fair, Poor'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="Normal" class="b">  Normal<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="Fair"> Fair<br>
+  <a class="float">c)</a><input class="c" type="radio" formControlName="Options" value="Poor"> Poor<br>
+</p>
+<p *ngSwitchCase="'check'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="check" class="b">  check<br>
+</p>
+<p *ngSwitchCase="'Physical Performance, Self Report, Subjective'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="Physical Performance" class="b">  Physical Performance<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="Self Report"> Self Report<br>
+   <a class="float">c)</a><input class="c" type="radio" formControlName="Options" value="Subjective"> Subjective
+</p>
+<p *ngSwitchCase="'#'">
+  <a class="float">a)</a><input type="radio"  formControlName="Options"  value="#" class="b">  #
+  
+</p>
+<p *ngSwitchCase="'∞'">
+  <a class="float">a)</a><input type="radio"  formControlName="Options"  value="∞" class="b">  ∞
+</p>
+<p *ngSwitchCase="'date'">
+  <input class="form-control" placeholder="Enter value"  type="text"  >
+</p>
+<p *ngSwitchCase="'Stable, Marginal, Unstable'">
+<a class="float">a)</a><input type="radio"  formControlName="Options"  value="Stable" class="b">  Stable<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="Marginal"> Marginal<br>
+   <a class="float">c)</a><input class="c" type="radio" formControlName="Options" value="Unstable"> Unstable
+</p>
+<p *ngSwitchCase="'week, month, 3 months, 6 months, 12 months'">
+<a class="float">a)</a><input type="radio"  formControlName="Options"  value="week" class="b">  week<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="month"> month<br>
+   <a class="float">c)</a><input class="c" type="radio" formControlName="Options" value="3 months"> 3 months<br>
+   <a class="float">d)</a><input class="c" type="radio" formControlName="Options" value="6 months"> 6 months<br>
+   <a class="float">e)</a><input class="c" type="radio" formControlName="Options" value="12 months"> 12 months
+</p>
+
+<p *ngSwitchCase="'Yes, No'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="yes" class="b">  Yes<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="no"> No
+</p>
+<p *ngSwitchCase="'1;10;1'">
+<a class="float">a)</a><input type="radio"  formControlName="Options"  value="1" class="b">  1<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="10"> 10<br>
+   <a class="float">c)</a><input class="c" type="radio" formControlName="Options" value="1"> 1
+</p>
+<p *ngSwitchCase="'left hand, right arm, left arm, right hand'">
+ <a class="float">a)</a><input type="radio"  formControlName="Options"  value="left hand" class="b">  left hand<br>
+  <a class="float">b)</a><input class="c" type="radio" formControlName="Options" value="right arm"> right arm<br>
+  <a class="float">c)</a><input class="c" class="c" type="radio" formControlName="Options" value="left arm"> left arm<br>
+  <a class="float">d)</a><input class="c" type="radio" formControlName="Options" value="right hand"> right hand
+</p>
+</div>
+</tr>
+<button class="btn btn-info btn" mat-button>Submit</button>
+<pagination-controls class="paggi"  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls> 
+</form>
+
+</th> 
+
+</tr>
+
+</table>
+</div>
+       
+
+
+
+
+
+

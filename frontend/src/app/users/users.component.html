@@ -1,0 +1,6 @@
+
+
+<h5>All Users</h5>
+<div *ngFor="let hero of Users">
+  <a [routerLink]="['/video/', hero._id]" style="color:black"><span class="badge badge-dark">{{hero._id}}</span> -> {{ hero.username }}</a>
+</div>

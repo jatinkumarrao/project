@@ -1,0 +1,83 @@
+<div class="row" style="margin-top:40px; background-color:#eff0f2;
+-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
+  <!-- <div class="col-sm-12" style="text-align:center;">
+    Register
+  </div> -->
+ 
+  <div class="col-sm-12">
+      <div class="jumbotron">
+          <h1 class="display-4">Hello, {{username.username}}!</h1>
+                 <div *ngIf="username.role === 'ADMIN'"><li class="nav-item">
+              <a class="nav-link" [routerLink]="['/admin']" routerLinkActive="active">Forgot</a>
+                       <a class="nav-link" [routerLink]="['/users-list']" routerLinkActive="active">view all post</a>
+        </li>
+        </div>
+          <p class="lead">You have successfully logged in to our system.</p>
+          <hr class="my-4">
+          <p>Thanks to bootstrap for making wonderful UI to make development fast.</p>
+          <p class="lead" style="color:white;">
+            <a class="btn btn-primary btn-lg" role="button" (click)="logout()">Log Out</a>
+          </p>
+        </div>
+  </div>
+
+
+</div>
+
+ <div *ngIf="username.role === 'ADMIN'">
+ <table style=" margin-top: 5%; margin-left: -30%;" class="table table-bordered " >
+    <thead class="table-success">
+      <tr>
+
+        <th scope="col">Email</th>
+        <th scope="col">Username</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Phone No</th>
+         <th scope="col">Current Role</th>
+          <th scope="col">Update</th>
+            <th scope="col">New Role</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Status</th>
+            <th scope="col">New Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let User of Users | paginate: { id: 'listing_pagination',                        itemsPerPage: 2,currentPage: page,totalItems: totalRec }; let i= index ">
+
+        <td>{{User.email}}</td>
+        <td>{{User.username}}</td>
+        <td>{{User.firstname}}</td>
+        <td>{{User.phonenumber}}</td>  
+                <td>{{User.role}}</td>
+           <td class="text-center edit-block">
+          <span class="edit" [routerLink]="['/edit-user/', User._id]">
+            <button type="button" class="btn btn-success btn-sm">Edit</button>
+          </span></td>
+          
+             <td class="text-center edit-block">
+          <span class="edit" [routerLink]="['/role/', User._id]">
+            <button type="button" class="btn btn-warning btn-sm">Role</button>
+          </span></td>
+          <td>
+          <span class="delete" (click)="removeUser(User, i)">
+            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+          </span>
+        </td>
+        <td>
+          <span class="status" (click)="User_status(User, i)">
+            <button type="button" class="btn btn-info btn-sm">{{User.status}}</button>
+          </span>
+        </td>
+          <td class="text-center admin-block">
+          <span class="role" [routerLink]="['/admin']">
+            <button type="button" class="btn btn-success btn-sm">Add </button>
+          </span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+ <pagination-controls class="paggi"  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls> 
+  </div>
+</div>

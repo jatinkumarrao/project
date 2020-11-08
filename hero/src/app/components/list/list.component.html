@@ -1,0 +1,14 @@
+
+<tr  *ngFor="let hero of heroes">
+<button style="float: left;" class="btn btn-outline-primary mr-2" (click)="doUpdate(hero)">
+  <div>{{hero.name}}</div>
+</button>
+  
+</tr>
+<li>
+        <a class="" href="#" (click)="newCountry($event)">New</a>
+      </li>
+<h5>All heroes</h5>
+<div *ngFor="let hero of heroes">
+  <a  (click)="doUpdate(hero)" style="color:black"><span class="badge badge-dark">{{hero.id}}</span> -> {{ hero.name }}</a>
+</div>

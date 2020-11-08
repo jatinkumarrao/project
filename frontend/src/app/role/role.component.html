@@ -1,0 +1,34 @@
+ <form [formGroup]="statusForm" (ngSubmit)="role()" >
+        <div class="form-group" >
+          <div class="form-group">
+        
+        <input formControlName="_id" type="hidden" class="form-control"   value="{{Users._id}}" ngModel="{{Users._id}}">
+        <small id="passHelp" class="form-text text-muted"></small>
+      </div>
+       <label for="Email">Email:-</label> 
+        {{Users.email}}<br>
+        <label for="firstname">First Name:-</label> 
+        {{Users.firstname}}<br>
+         <label for="phonenumber">Phone Number:-</label>  
+       {{Users.phonenumber}}<br>
+        <label for="Role">Current Role:-</label> 
+        {{Users.role}}<br>
+         <label for="status">Status:-</label>  
+        {{Users.status}}<br>
+         <label for="username">UserName:-</label> 
+         {{Users.username}}
+
+          <label for="inputPassword3">Designation:-</label>
+          <select class="custom-select form-control"  (change)="role($event.target.value)"
+            formControlName="role" >
+            <option value="">Choose...</option>
+            <option *ngFor="let role of role_names" value="{{role.role_name}}">{{role.role_name}}
+            </option>
+          </select>
+          <noscript><input type="submit" value="Submit"></noscript>
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.designation.errors?.required">
+            Choose designation.
+          </div>
+        </div>
+      </form>

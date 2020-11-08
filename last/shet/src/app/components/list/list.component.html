@@ -1,0 +1,64 @@
+
+    <fieldset class="form-group">
+            <label>Select Category</label><br/><br/>
+                <select  [(ngModel)]="selectedObject" name="selectedObject" class="form-control" (change)="updateProfile($event.target.value)">
+                    <option  disabled>--Select--</option>
+
+                    <option  *ngFor="let category of Employee" [value]="category">{{category.title}}</option>
+                </select>
+        </fieldset>
+
+
+
+<div class="container">
+<table class="table table-bordered" *ngIf="Employee.length > 0">
+<thead class="table-success">
+      
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of Employee1 | paginate: { id: 'listing_pagination',
+                                                      itemsPerPage: 1,
+                                                      currentPage: page,
+                                                      totalItems: totalRec }; let i 
+                                                      = index">
+       <th scope="row">{{employee.question}}:-{{employee.name}}</th>
+       <th><form [formGroup]="employeeForm" (ngSubmit)="createOrUpdate()">
+
+           <div class="form-group">
+             <label for="inputName">Question</label>
+             <input class="form-control" value="{{employee.question}}" type="text" formControlName="question">
+             <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required">
+               Name is required.
+             </div>
+           </div>
+           <div class="form-group">
+             <label for="inputEmail3">Name</label>
+             <input class="form-control" type="text" value="{{employee.name}}"  formControlName="name">
+             <!-- error -->
+            
+             <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.pattern">
+               Enter valid email.
+             </div>
+           </div>
+
+           
+         </form></th>
+<th>  <form [formGroup]="employeeForm" (ngSubmit)="createOrUpdate()">
+    
+    <p>Selected Value:  </p>
+
+  
+<mat-radio-group aria-label="Select an option">
+  <mat-radio-button ngDefaultControl formControlName="Options" value="yes">yes</mat-radio-button>
+  <mat-radio-button ngDefaultControl formControlName="Options" value="no">no</mat-radio-button>
+</mat-radio-group>
+<button mat-button>Submit</button>
+      
+  </form>
+</th><br><br>
+  <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+</tr>
+</tbody>
+</table>      
+  </div>
+         
